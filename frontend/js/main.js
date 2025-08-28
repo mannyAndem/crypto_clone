@@ -109,7 +109,7 @@ async function updateEscrowBalance() {
 
 function startPolling() {
   // Poll escrow balance every 10 seconds
-  pollingInterval = setInterval(updateEscrowBalance, 10000000000000); //Fix later
+  pollingInterval = setInterval(updateEscrowBalance, 30000); //Fix later
 }
 
 function stopPolling() {
