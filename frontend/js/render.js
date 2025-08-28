@@ -175,8 +175,6 @@ export function renderCampaignStats(campaign, transactions, currentSOLPrice) {
   const hoursElapsed = Math.max(1, (now - created) / (1000 * 60 * 60));
   console.log("hours elapsed", hoursElapsed);
   const fundingPerHour = campaign.current_balance / hoursElapsed;
-  console.log("t", transactions);
-  console.log("f", fundingPerHour);
   const txPerHour = transactions.transactions.length / hoursElapsed;
 
   document.getElementById("fundingSpeed").textContent = `$${Math.round(
