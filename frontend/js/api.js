@@ -66,7 +66,8 @@ export async function fetchEscrowTransactions(escrowPublicKey) {
 
   try {
     const response = await fetch(
-      `${API_CONFIG.ESCROW_TRANSACTIONS}/${escrowPublicKey}`,
+      // `${API_CONFIG.ESCROW_TRANSACTIONS}/${escrowPublicKey}`,
+      `https://2ebb6db71568.ngrok-free.app/api/campaigns/cmp_23611420/transactions`,
       { headers: { "ngrok-skip-browser-warning": 69420 } }
     );
     console.log(response);
