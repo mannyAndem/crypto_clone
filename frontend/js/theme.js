@@ -11,9 +11,9 @@ export function setTheme(theme) {
   localStorage.setItem("theme", theme);
 
   if (theme === "dark") {
-    document.body.classList.add("dark");
+    document.documentElement.classList.add("dark");
   } else {
-    document.body.classList.remove("dark");
+    document.documentElement.classList.remove("dark");
   }
 
   // Update theme toggle buttons

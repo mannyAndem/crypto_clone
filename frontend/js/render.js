@@ -42,10 +42,10 @@ export function renderProgress(campaign, currentSOLPrice) {
   document.getElementById("campaign_type").textContent = campaign.campaign_type;
 
   // Update progress text
-  document.getElementById("progressText").textContent = `${Math.round(
+  document.getElementById("progressText").textContent = `$${Math.round(
     currentAmount
   )} / ${goalAmount}`;
-  document.getElementById("neededAmount").textContent = `${Math.round(
+  document.getElementById("neededAmount").textContent = `$${Math.round(
     neededAmount
   )} needed`;
   document.getElementById(
@@ -156,9 +156,9 @@ export function renderCampaignStats(campaign, transactions, currentSOLPrice) {
     transactions.transactionCount > 0
       ? totalAmount / transactions.transactionCount
       : 0;
-  document.getElementById("avgContribution").textContent = (
+  document.getElementById("avgContribution").textContent = `$${(
     avgContribution * currentSOLPrice
-  ).toFixed(2);
+  ).toFixed(2)}`;
 
   // Format dates
   document.getElementById("campaignCreated").textContent = formatDateTime(
@@ -171,7 +171,9 @@ export function renderCampaignStats(campaign, transactions, currentSOLPrice) {
   // Calculate funding speed
   const now = new Date();
   const created = new Date(campaign.created_at);
+  console.log("created:", created);
   const hoursElapsed = Math.max(1, (now - created) / (1000 * 60 * 60));
+  console.log("hours elapsed", hoursElapsed);
   const fundingPerHour = campaign.current_balance / hoursElapsed;
   const txPerHour = transactions.transactionCount / hoursElapsed;
 
