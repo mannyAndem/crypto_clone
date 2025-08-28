@@ -41,7 +41,6 @@ async function loadCampaignData() {
 
     // Fetch campaign details
     const campaignData = await fetchCampaignDetail(contractAddress);
-    // const campaignData = MOCK_DATA.campaign; // Replace with fetchCampaignDetail(contractAddress) when backend is ready
     console.log("Loaded campaign data:", campaignData);
     if (!campaignData.success) {
       throw new Error("Failed to load campaign data");
@@ -53,7 +52,7 @@ async function loadCampaignData() {
 
     // const transactionsData = MOCK_DATA.transactions;
     const transactionsData = await fetchEscrowTransactions(
-      currentWalletAddress
+      campaignData.campaign_id
     );
 
     const solPrice = await fetchSolPrice();
@@ -125,7 +124,7 @@ async function refreshContributions() {
 
   try {
     const transactionsData = await fetchEscrowTransactions(
-      currentWalletAddress
+      currentCampaign.campaign_id
     );
 
     const solPrice = await fetchSolPrice();
