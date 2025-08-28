@@ -44,14 +44,14 @@ export function renderProgress(campaign, currentSOLPrice) {
   // Update progress text
   document.getElementById("progressText").textContent = `$${Math.round(
     currentAmount
-  )} / ${goalAmount}`;
+  )} / $${goalAmount}`;
   document.getElementById("neededAmount").textContent = `$${Math.round(
     neededAmount
   )} needed`;
   document.getElementById(
     "livePrice"
-  ).textContent = `Live: ${currentSOLPrice}/SOL`;
-  document.getElementById("solAmount").textContent = `${(
+  ).textContent = `Live: $${currentSOLPrice}/SOL`;
+  document.getElementById("solAmount").textContent = `$${(
     currentAmount / currentSOLPrice
   ).toFixed(4)} SOL`;
   document.getElementById("percentFunded").textContent = `${Math.round(
@@ -175,11 +175,13 @@ export function renderCampaignStats(campaign, transactions, currentSOLPrice) {
   const hoursElapsed = Math.max(1, (now - created) / (1000 * 60 * 60));
   console.log("hours elapsed", hoursElapsed);
   const fundingPerHour = campaign.current_balance / hoursElapsed;
-  const txPerHour = transactions.transactionCount / hoursElapsed;
+  console.log("t", transactions);
+  console.log("f", fundingPerHour);
+  const txPerHour = transactions.transactions.length / hoursElapsed;
 
-  document.getElementById("fundingSpeed").textContent = `${Math.round(
+  document.getElementById("fundingSpeed").textContent = `$${Math.round(
     fundingPerHour
-  )}/h (${txPerHour.toFixed(1)} tx/h)`;
+  )}/h ($${txPerHour.toFixed(1)} tx/h)`;
 }
 
 export function renderEscrowWallet(campaign, qr) {
