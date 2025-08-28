@@ -4,6 +4,7 @@ import {
   fetchEscrowTransactions,
   fetchEscrowBalance,
   fetchCampaignQr,
+  fetchSolPrice,
 } from "./api.js";
 import {
   renderCampaignHeader,
@@ -22,7 +23,7 @@ let currentCampaign = MOCK_DATA.campaign.campaign;
 let currentContractAddress = "KTtNxsFzGJBUDCLT5c6k3zKtRacQ2LLzivZ3CdCbonk";
 let currentWalletAddress = "FuXL5ZYZc6YBGkRxWQ98k1f64QSGWXtLwNN2Dj5f3XYf";
 // let currentContractAddress = MOCK_DATA.campaign.campaign.contract_address;
-let currentSOLPrice = 180; // Mock SOL price
+let currentSOLPrice = 0; // Mock SOL price
 let pollingInterval = null;
 
 // ============================================
@@ -54,9 +55,11 @@ async function loadCampaignData() {
       currentWalletAddress
     );
 
+    const solPrice = await fetchSolPrice();
+
     // Render all components
     renderCampaignHeader(campaignData.campaign);
-    renderProgress(campaignData.campaign, currentSOLPrice);
+    renderProgress(campaignData.campaign, solPrice);
     renderContributions(transactionsData);
     renderCampaignStats(
       campaignData.campaign,
@@ -91,12 +94,13 @@ async function updateEscrowBalance() {
   try {
     // const balanceData = await fetchEscrowBalance(currentWalletAddress);
     const balanceData = currentCampaign.campaign.current_balance;
+    const solPrice = await fetchSolPrice();
     if (balanceData.success) {
       // Update current balance in campaign object
       // currentCampaign.current_balance = balanceData.data.balanceUSD;
 
       // Re-render progress
-      renderProgress(currentCampaign.campaign, currentSOLPrice);
+      renderProgress(currentCampaign.campaign, solPrice);
     }
   } catch (error) {
     console.error("Error updating escrow balance:", error);

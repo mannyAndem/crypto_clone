@@ -106,6 +106,7 @@ export async function fetchEscrowBalance(escrowPublicKey, currentSOLPrice) {
     setTimeout(() => resolve(mockBalance), 200);
   });
 }
+
 export async function fetchCampaignQr(campaignId) {
   try {
     const response = await fetch(
@@ -128,6 +129,18 @@ export async function fetchCampaignQr(campaignId) {
     mockBalance.data.balanceUSD = mockBalance.data.balanceSOL * currentSOLPrice;
     setTimeout(() => resolve(mockBalance), 200);
   });
+}
+export async function fetchSolPrice() {
+  try {
+    const response = await fetch(
+      `https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd`
+    );
+    let data = await response.json();
+    console.log(data);
+    return data.solana.usd;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export async function fetchPairData(tokenAddress) {
