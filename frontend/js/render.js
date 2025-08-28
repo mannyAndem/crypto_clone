@@ -39,6 +39,7 @@ export function renderProgress(campaign, currentSOLPrice) {
   const percentFunded = Math.min(100, (currentAmount / goalAmount) * 100);
 
   console.log("campaign inside escrow", campaign);
+  document.getElementById("campaign_type").textContent = campaign.campaign_type;
 
   // Update progress text
   document.getElementById("progressText").textContent = `${Math.round(
@@ -192,7 +193,7 @@ function generateQRCode(qr) {
   const qrContainer = document.getElementById("qrCode");
   qrContainer.innerHTML = `
         <div class="w-32 h-32 bg-white flex items-center justify-center relative">
-            <img src="${qr.qr_code}"/>
+            <img src="${qr.qr_code}"
         </div>
     `;
   //   qrContainer.innerHTML = `

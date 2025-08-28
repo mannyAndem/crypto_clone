@@ -20,7 +20,8 @@ import { MOCK_DATA } from "./config.js";
 // GLOBAL STATE
 // ============================================
 let currentCampaign = MOCK_DATA.campaign.campaign;
-let currentContractAddress = "KTtNxsFzGJBUDCLT5c6k3zKtRacQ2LLzivZ3CdCbonk";
+// let currentContractAddress = "KTtNxsFzGJBUDCLT5c6k3zKtRacQ2LLzivZ3CdCbonk";
+let currentContractAddress = "DVpzjGo4SXo6nkFC3ZXj6azFL6wiSCVmEj8A1X7vpump";
 let currentWalletAddress = "FuXL5ZYZc6YBGkRxWQ98k1f64QSGWXtLwNN2Dj5f3XYf";
 // let currentContractAddress = MOCK_DATA.campaign.campaign.contract_address;
 let currentSOLPrice = 0; // Mock SOL price
