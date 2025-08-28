@@ -127,9 +127,11 @@ async function refreshContributions() {
     const transactionsData = await fetchEscrowTransactions(
       currentWalletAddress
     );
+
+    const solPrice = await fetchSolPrice();
     console.log(transactionsData);
     renderContributions(transactionsData);
-    renderCampaignStats(currentCampaign, transactionsData, currentSOLPrice);
+    renderCampaignStats(currentCampaign, transactionsData, solPrice);
   } catch (error) {
     console.error("Error refreshing contributions:", error);
   }
